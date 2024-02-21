@@ -6,11 +6,8 @@ const User = require("./models/user");
 const session = require("express-session");
 
 mongoose
-<<<<<<< HEAD
+    // .connect("mongodb://localhost:27017/todulo")
     .connect(process.env.DB_URL)
-=======
-    .connect("mongodb://127.0.0.1:27017/toduloTest")
->>>>>>> parent of d97da6b (Fixed MongoDB connection.)
     .then(() => {
         console.log("Mongo Connection Open!");
     })
@@ -21,7 +18,14 @@ mongoose
 
 app.use(express.static("../client/dist"));
 app.use(express.json());
-app.use(session({ secret: "secret", resave: false, saveUninitialized: true }));
+app.use(
+    session({
+        secret: "secret",
+        resave: false,
+        saveUninitialized: true,
+        cookie: { maxAge: 1000 * 60 * 60 * 24 * 365 * 25 },
+    })
+);
 app.use(
     cors({
         credentials: true,
@@ -110,6 +114,8 @@ app.post("/api/logout", (req, res) => {
 
 // If in production, serve the client's build folder
 if (process.env.NODE_ENV === "production") {
+    session.cookie.secure = true;
+
     app.get("*", (req, res) => {
         return res.sendFile(
             "/Users/amirhasrati/Repos/Todulo/client/dist/index.html"
