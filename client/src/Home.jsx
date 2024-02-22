@@ -3,10 +3,30 @@ import { useState } from "react";
 import Navbar from "./Navbar";
 import TaskList from "./TaskList";
 
+// Version 1.0
+// const changelog = [
+//     { task: "Added a homepage", id: uuid() },
+//     { task: "Added user accounts and authentication", id: uuid() },
+//     { task: "Added a back-end component to store user data", id: uuid() },
+// ];
+
+// Version 1.1
 const changelog = [
-    { task: "Added a homepage", id: uuid() },
-    { task: "Added user accounts and authentication", id: uuid() },
-    { task: "Added a back-end component to store user data", id: uuid() },
+    {
+        task: "Fixed issue with user sessions expiring, causing undefined behaviour",
+        id: uuid(),
+        isComplete: true,
+    },
+    {
+        task: 'Added feature to "check off" tasks',
+        id: uuid(),
+        isComplete: true,
+    },
+    {
+        task: "Various UI improvents (responsiveness, color scheme, etc.)",
+        id: uuid(),
+        isComplete: true,
+    },
 ];
 
 function Home() {
@@ -45,7 +65,7 @@ function Home() {
                     <TaskList
                         onAddTask={addTask}
                         onDeleteTask={deleteTask}
-                        name={"Changelog - Version 1.0"}
+                        name={"Changelog - Version 1.1"}
                         tasks={tasks}
                     />
                 </div>

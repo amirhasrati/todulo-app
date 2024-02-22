@@ -1,7 +1,13 @@
 import Task from "./Task";
 import AddTaskForm from "./AddTaskForm";
 
-function TaskList({ name = "To do", tasks = [], onAddTask, onDeleteTask }) {
+function TaskList({
+    name = "To do",
+    tasks = [],
+    onAddTask,
+    onDeleteTask,
+    onClickTask,
+}) {
     return (
         <div className="flex flex-col gap-4 py-2 px-4 w-80 border border-gray-200 rounded-xl shadow-sm">
             <h1 className="text-rose-400 font-semibold text-lg text-center pt-2">
@@ -14,6 +20,8 @@ function TaskList({ name = "To do", tasks = [], onAddTask, onDeleteTask }) {
                     task={task.task}
                     id={task.id}
                     deleteTask={onDeleteTask}
+                    isComplete={task.isComplete}
+                    onClickTask={onClickTask}
                 />
             ))}
             <AddTaskForm addTask={onAddTask} />

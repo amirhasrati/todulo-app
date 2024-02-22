@@ -73,8 +73,13 @@ app.post("/api/updateTasks", async (req, res) => {
     if (!req.session.user_id) {
         return res.status(401).send("Unauthorized");
     }
+    console.log(req.body);
     const user = await User.findById(req.session.user_id);
-    user.tasks = req.body.map((task) => ({ task: task.task, id: task.id }));
+    user.tasks = req.body.map((task) => ({
+        task: task.task,
+        id: task.id,
+        isComplete: task.isComplete,
+    }));
     await user.save().then(console.log("User saved"));
 });
 
@@ -121,6 +126,10 @@ if (process.env.NODE_ENV === "production") {
             "/Users/amirhasrati/Repos/Todulo/client/dist/index.html"
         );
         // res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
+    });
+} else {
+    app.get("*", (req, res) => {
+        res.sendFile("/Users/amirhasrati/Repos/Todulo/client/dist/index.html");
     });
 }
 

@@ -5,8 +5,10 @@ import TaskList from "./TaskList";
 function Todo() {
     const [tasks, setTasks] = useState([]);
 
+    console.log(tasks);
+
     const addTask = async (task) => {
-        const newTasks = [...tasks, { ...task, id: uuid() }];
+        const newTasks = [...tasks, { ...task, id: uuid(), isComplete: false }];
         setTasks(newTasks);
         await saveTasks(newTasks);
     };
@@ -41,6 +43,16 @@ function Todo() {
         }
     };
 
+    const clickTask = async (id) => {
+        const newTasks = tasks.map((t) => {
+            if (t.id === id) {
+                return { ...t, isComplete: !t.isComplete };
+            }
+        });
+        setTasks(newTasks);
+        await saveTasks(newTasks);
+    };
+
     useEffect(() => {
         getTasks();
     }, []);
@@ -54,6 +66,7 @@ function Todo() {
                     tasks={tasks}
                     onAddTask={addTask}
                     onDeleteTask={deleteTask}
+                    onClickTask={clickTask}
                 />
             </div>
         </div>

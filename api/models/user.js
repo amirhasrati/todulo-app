@@ -18,7 +18,11 @@ const userSchema = new mongoose.Schema({
             },
             id: {
                 type: String,
-                requireD9: [true, "ID is required"],
+                required: [true, "ID is required"],
+            },
+            isComplete: {
+                type: Boolean,
+                required: [true, "isComplete is required"],
             },
         },
     ],

@@ -20,14 +20,14 @@ function RegistrationPage() {
     };
 
     return (
-        <div className="h-screen flex flex-col relative">
+        <div className="GradientBackground h-screen flex flex-col relative">
             <Navbar />
             <div className="flex-1 flex justify-center items-center">
-                <div className="w-96 h-96 border border-gray-200 rounded-xl shadow-xl p-4">
-                    <h1 className="text-rose-400 text-2xl text-center py-4">
+                <div className="bg-white w-80 h-96 rounded-xl shadow-2xl p-2">
+                    <h1 className="text-rose-500 text-2xl text-center py-4">
                         Create a new account
                     </h1>
-                    <p className="text-gray-400 text-center">
+                    <p className="text-gray-400 text-center mx-8">
                         Welcome to Todulo! Please sign up to continue
                     </p>
                     <RegistrationForm register={register} />

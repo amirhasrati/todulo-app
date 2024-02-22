@@ -1,18 +1,22 @@
+import { useState } from "react";
+
 function CheckCircle() {
     return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6">
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-        </svg>
+        <div className="mx-1">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6">
+                <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+            </svg>
+        </div>
     );
 }
 
@@ -54,15 +58,30 @@ function Trash() {
     );
 }
 
-export default function Task({ task, id, deleteTask }) {
+export default function Task({
+    task,
+    id,
+    deleteTask,
+    isComplete = false,
+    onClickTask,
+}) {
+    const [taskComplete, setTaskComplete] = useState(isComplete);
+
     const handleDelete = () => {
         deleteTask(id);
     };
 
+    const handleCompleteTask = () => {
+        setTaskComplete(!taskComplete);
+        onClickTask(id);
+    };
+
     return (
         <div className="flex items-center p-2 bg-gray-100 rounded-lg">
-            <div className="text-gray-400 hover:text-rose-300 transition delay-75">
-                <Circle />
+            <div
+                onClick={handleCompleteTask}
+                className="text-gray-400 hover:text-rose-300 transition delay-75">
+                {taskComplete ? <CheckCircle /> : <Circle />}
             </div>
 
             <p className="flex-1 text-gray-500 ">{task}</p>

@@ -41,7 +41,7 @@ function RegistrationForm({ register }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-4 mt-8 px-8">
+            <div className="flex flex-col gap-4 mt-6 px-8">
                 <Input
                     type="text"
                     placeholder="Username"
@@ -59,7 +59,7 @@ function RegistrationForm({ register }) {
                     value={formData.password}
                     onChange={handleChange}
                 />
-                <button className="bg-rose-400 text-white p-2 mx-20 rounded-lg mt-4">
+                <button className="bg-rose-500 text-white p-2 mx-16 rounded-full mt-4 hover:bg-rose-600 transition delay-75">
                     Register
                 </button>
             </div>
