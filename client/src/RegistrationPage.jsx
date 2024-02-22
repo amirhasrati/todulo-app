@@ -3,7 +3,7 @@ import RegistrationForm from "./RegistrationForm";
 
 function RegistrationPage() {
     const register = async (registerData) => {
-        const res = await fetch("http://localhost:3000/api/register", {
+        const res = await fetch("/api/register", {
             method: "POST",
             body: JSON.stringify(registerData),
             headers: {

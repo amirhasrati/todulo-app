@@ -4,7 +4,7 @@ import "./GradientBackground.css";
 
 function LoginPage() {
     const signIn = async (signInData) => {
-        await fetch("http://localhost:3000/api/login", {
+        await fetch("/api/login", {
             method: "POST",
             body: JSON.stringify(signInData),
             headers: {
@@ -24,7 +24,7 @@ function LoginPage() {
         <div className="GradientBackground h-screen flex flex-col relative">
             <Navbar />
             <div className="flex-1 flex justify-center items-center">
-                <div className="bg-white w-80 h-96   rounded-xl shadow-2xl p-2">
+                <div className="bg-white w-80 h-96 rounded-xl shadow-2xl p-2">
                     <h1 className="text-rose-500 text-2xl text-center py-4">
                         Sign in to Todulo
                     </h1>

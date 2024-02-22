@@ -20,7 +20,7 @@ function Todo() {
     };
 
     const saveTasks = async (tasks) => {
-        await fetch("http://localhost:3000/api/updateTasks", {
+        await fetch("/api/updateTasks", {
             method: "POST",
             body: JSON.stringify(tasks),
             headers: {
@@ -30,7 +30,7 @@ function Todo() {
     };
 
     const getTasks = async () => {
-        const res = await fetch("http://localhost:3000/api/task", {
+        const res = await fetch("/api/task", {
             method: "GET",
             credentials: "include",
         });
@@ -48,6 +48,7 @@ function Todo() {
             if (t.id === id) {
                 return { ...t, isComplete: !t.isComplete };
             }
+            return t;
         });
         setTasks(newTasks);
         await saveTasks(newTasks);
