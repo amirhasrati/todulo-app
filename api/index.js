@@ -23,7 +23,8 @@ app.use(
         secret: "secret",
         resave: false,
         saveUninitialized: true,
-        cookie: { maxAge: 1000 * 60 * 60 * 24 * 365 * 25 },
+        cookie: { maxAge: 1000 * 60 * 60 * 24 * 365 * 25, secure = true },
+        
     })
 );
 app.use(
@@ -119,8 +120,6 @@ app.post("/api/logout", (req, res) => {
 
 // If in production, serve the client's build folder
 if (process.env.NODE_ENV === "production") {
-    session.cookie.secure = true;
-
     app.get("*", (req, res) => {
         return res.sendFile(
             "/Users/amirhasrati/Repos/Todulo/client/dist/index.html"

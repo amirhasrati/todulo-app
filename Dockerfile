@@ -9,8 +9,7 @@ LABEL fly_launch_runtime="Node.js"
 # Node.js app lives here
 WORKDIR /app
 
-# Set production environment
-ENV NODE_ENV="production"
+
 
 
 # Throw-away build stage to reduce size of final image
@@ -28,9 +27,9 @@ COPY --link . .
 
 WORKDIR /app/client
 RUN npm install
-RUN npm install -g vite
 RUN npm run build
 WORKDIR /app/api
+RUN npm rebuild bcrypt --build-from-source
 RUN npm install
 
 # Final stage for app image
@@ -41,4 +40,6 @@ COPY --from=build /app /app
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
+# Set production environment
+ENV NODE_ENV="production"
 CMD [ "node", "./api/index.js" ]
